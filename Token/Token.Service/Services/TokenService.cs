@@ -1,14 +1,11 @@
-﻿using FluentValidation;
+﻿using System;
 using Token.Domain.Entity;
 using Token.Domain.Interfaces;
-using Token.Infra.Data.Repository;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Token.Infra.CrossCutting;
 
 namespace Token.Service.Services
 {
-    public class BaseService<T> : IService<T> where T : BaseEntity
+    public class TokenService<T> : IService<T> where T : BaseEntity
     {
         private readonly IRepository<T> _repository;
         private readonly IToken _token;
@@ -18,7 +15,7 @@ namespace Token.Service.Services
         /// </summary>
         /// <param name="repository"></param>
         /// <param name="token"></param>
-        public BaseService(IRepository<T> repository, IToken token)
+        public TokenService(IRepository<T> repository, IToken token)
         {
             _repository = repository;
             _token = token;
@@ -26,6 +23,7 @@ namespace Token.Service.Services
 
         /// <summary>
         /// Insert new token on the database
+        /// Example of validate the entity using Abstract Validator
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -41,9 +39,9 @@ namespace Token.Service.Services
 
                 return token;
             }
-            catch (Exception ex)
+            catch (ExecptionHelper.ExceptionService ex)
             {
-                throw new Exception(ex.Message);
+                throw new ExecptionHelper.ExceptionService(ex.Message);
             }
         }
 
@@ -72,9 +70,9 @@ namespace Token.Service.Services
                 } else
                     return false;
             }
-            catch (Exception ex)
+            catch (ExecptionHelper.ExceptionService ex)
             {
-                throw new Exception(ex.Message);
+                throw new ExecptionHelper.ExceptionService(ex.Message);
             }
         }
 
@@ -89,9 +87,9 @@ namespace Token.Service.Services
             {
                 return _repository.Select(date);
             }
-            catch (Exception ex)
+            catch (ExecptionHelper.ExceptionService ex)
             {
-                throw new Exception(ex.Message);
+                throw new ExecptionHelper.ExceptionService(ex.Message);
             }
         }
     }

@@ -42,7 +42,7 @@ namespace Token.Presentation
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "TokenApi"
+                    Title = "RDI Token API"
                 });
             });
 
@@ -53,7 +53,7 @@ namespace Token.Presentation
             );
 
             services.AddScoped(typeof(TokenContext));
-            services.AddScoped(typeof(IService<>), typeof(BaseService<>));
+            services.AddScoped(typeof(IService<>), typeof(TokenService<>));
             services.AddScoped(typeof(IToken), typeof(GenerateToken));
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository <>));
 
@@ -74,9 +74,14 @@ namespace Token.Presentation
 
             //Swagger
             app.UseSwagger();
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "TokenApi"); });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "RDI Token API"); });
 
             app.UseMvc();
+
+            // Set swagger as default page
+            app.Run(async context => {
+                context.Response.Redirect("swagger/index.html");
+            });
         }
     }
 }

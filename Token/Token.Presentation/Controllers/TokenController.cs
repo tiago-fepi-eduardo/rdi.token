@@ -2,6 +2,7 @@
 using System;
 using Token.Domain.Entity;
 using Token.Domain.Interfaces;
+using Token.Infra.CrossCutting;
 using Token.Presentation.Model;
 
 namespace Token.Presentation.Controllers
@@ -31,27 +32,16 @@ namespace Token.Presentation.Controllers
         [HttpPost]
         public string Post([FromBody]TokenModel token)
         {
+            if (!ValidateHelper.ValidateCreditCardNumber(token.CardNumber))
+                throw new Exception("CardNumber not correct format");
+
             TokenEntity tokenEntity = new TokenEntity();
             tokenEntity.SetCard(token.CardNumber, token.Date, token.CVV);
 
             return _service.Post(tokenEntity);
         }
 
-        /// <summary>
-        /// Check if the token is valid and return to user interface.
-        /// </summary>
-        /// <param name="token"></param>
-        /// <param name="date"></param>
-        // PUT api/token
-        [HttpPut]
-        public bool Put(string token, DateTime date)
-        {
-            TokenEntity tokenEntity = new TokenEntity();
-
-            return _service.Put(token, date);
-        }
-
-        // GET AND DELETE not used in this solution.
+        // GET, PUT AND DELETE not used in this solution.
 
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Token.Infra.CrossCutting;
 
 namespace Token.Infra.Data.Repository
 {
@@ -23,9 +24,9 @@ namespace Token.Infra.Data.Repository
                 _context.Set<T>().Add(obj);
                 _context.SaveChanges();
             }
-            catch (Exception ex)
+            catch (ExecptionHelper.ExceptionRepository ex)
             {
-                throw new Exception(ex.Message);
+                throw new ExecptionHelper.ExceptionRepository(ex.Message);
             }
         }
         
@@ -37,9 +38,9 @@ namespace Token.Infra.Data.Repository
 
                 return item as T;
             }
-            catch (Exception ex)
+            catch (ExecptionHelper.ExceptionRepository ex)
             {
-                throw new Exception(ex.Message);
+                throw new ExecptionHelper.ExceptionRepository(ex.Message);
             }
         }
     }

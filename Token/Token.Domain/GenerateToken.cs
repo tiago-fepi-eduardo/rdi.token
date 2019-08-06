@@ -35,7 +35,7 @@ namespace Token.Domain
         /// <returns></returns>
         public string Generate(TokenEntity tokenEntity)
         {
-            int[] cardNumber = tokenEntity.CardNumber.ToArray().Select(x => int.Parse(x.ToString())).ToArray();
+            int[] cardNumber = tokenEntity.CardNumber.ToString().ToArray().Select(x => int.Parse(x.ToString())).ToArray();
             int[] dateTimeNow = tokenEntity.Date.ToString("yyyyMMddHHmmss").ToArray().Select(x => int.Parse(x.ToString())).ToArray();
             int cvvNumber = tokenEntity.CVV;
 
