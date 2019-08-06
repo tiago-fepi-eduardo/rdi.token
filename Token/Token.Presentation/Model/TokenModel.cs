@@ -8,15 +8,8 @@ namespace Token.Presentation.Model
     /// </summary>
     public class TokenModel
     {
-        [Required(ErrorMessage = "CardNumber is required")]
+        public DateTime Date { get; set; }
         public long CardNumber { get; set; }
-
-        [Range(0,999,ErrorMessage ="Number out of range. 0 - 999")]
-        [Required(ErrorMessage = "CVV is required")]
-        public int CVV { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:d}")]
-        [Required(ErrorMessage = "Date is required")]
-        public DateTime Date { get; set; }      
+        public int CVV { get; set; } 
     }   
 }

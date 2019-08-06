@@ -2,24 +2,20 @@
 using System;
 using Token.Domain.Entity;
 using Token.Domain.Interfaces;
-using Token.Infra.CrossCutting;
 using Token.Presentation.Model;
 
 namespace Token.Presentation.Controllers
 {
-    /// <summary>
-    /// API controller to generate token.
-    /// </summary>
     [Route("api/[controller]")]
-    public class TokenController : Controller
+    public class TokenController : BaseController
     {
         private readonly IService<BaseEntity> _service;
-        
+
         /// <summary>
         /// Dependency injection to access Service layer.
         /// </summary>
         /// <param name="Service"></param>
-        public TokenController(IService<BaseEntity> Service)
+        public TokenController(IService<BaseEntity> Service) : base()
         {
             _service = Service;
         }
@@ -30,18 +26,29 @@ namespace Token.Presentation.Controllers
         /// <param name="token"></param>
         // POST api/token
         [HttpPost]
-        public string Post([FromBody]TokenModel token)
+        public ActionResult Post([FromBody]TokenModel token)
         {
-            if (!ValidateHelper.ValidateCreditCardNumber(token.CardNumber))
-                throw new Exception("CardNumber not correct format");
+            try {
+                TokenEntity tokenEntity = new TokenEntity();
+                tokenEntity.SetCard(token.CardNumber, token.Date, token.CVV);
 
-            TokenEntity tokenEntity = new TokenEntity();
-            tokenEntity.SetCard(token.CardNumber, token.Date, token.CVV);
-
-            return _service.Post(tokenEntity);
+                return Response(true, _service.Post(tokenEntity));
+            }
+            catch (Exception ex)
+            {
+                return Response(false, ex.Message);
+            }
         }
 
         // GET, PUT AND DELETE not used in this solution.
-
+        
+        //Trocar nome do projeto presentaion para API
+        //Criar retorno padrao
+        //Implementar validation na Service
+        //Tirar da CrossCut a validacao de CPF.
+        //Adicionar na crosscut um log.
+        //Impolementar dispose no IRepository
+        //Criar metodo para resolve injecao de Dep. na teste.
+        //Resolver Docker
     }
 }

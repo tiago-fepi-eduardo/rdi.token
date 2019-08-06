@@ -22,11 +22,14 @@ namespace Token.Infra.Data.Migrations
 
             modelBuilder.Entity("Token.Domain.Entity.TokenEntity", b =>
                 {
-                    b.Property<DateTime>("Date");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("DateTime");
 
-                    b.Property<int>("CVV");
+                    b.Property<int>("CVV")
+                        .HasColumnType("Int");
 
-                    b.Property<long>("CardNumber");
+                    b.Property<long>("CardNumber")
+                        .HasColumnType("BigInt");
 
                     b.HasKey("Date");
 

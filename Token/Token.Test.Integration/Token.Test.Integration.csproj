@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Token.Presentation\Token.Presentation.csproj" />
+    <ProjectReference Include="..\Token.Presentation\Token.Api.csproj" />
   </ItemGroup>
 
 </Project>

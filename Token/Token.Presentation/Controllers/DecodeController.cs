@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Token.Presentation.Controllers
 {
     [Route("api/[controller]")]
-    public class DecodeController : Controller
+    public class DecodeController : BaseController
     {
         private readonly IService<BaseEntity> _service;
 
@@ -26,11 +26,18 @@ namespace Token.Presentation.Controllers
         /// <param name="date"></param>
         // PUT api/token
         [HttpPut]
-        public bool Put(string token, DateTime date)
+        public ActionResult Put(string token, DateTime date)
         {
-            TokenEntity tokenEntity = new TokenEntity();
+            try
+            {
+                TokenEntity tokenEntity = new TokenEntity();
 
-            return _service.Put(token, date);
+                return Response(true, _service.Put(token, date));
+            }
+            catch (Exception ex)
+            {
+                return Response(false, ex.Message);
+            }
         }
 
         // POST, GET and DELETE not impplemented

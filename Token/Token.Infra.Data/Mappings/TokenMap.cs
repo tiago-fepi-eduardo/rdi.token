@@ -13,16 +13,19 @@ namespace Token.Infra.Data.Mappings
         {
             builder.ToTable("Token");
 
-            builder.HasKey(c => c.Date);
+            builder.Property(c => c.Date)
+                .IsRequired()
+                .HasColumnType("DateTime");
 
             builder.Property(c => c.CardNumber)
-                .IsRequired();
-
-            builder.Property(c => c.Date)
-                .IsRequired();
-
+                .IsRequired()
+                .HasColumnType("BigInt");
+            
             builder.Property(c => c.CVV)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnType("Int");
+
+            builder.HasKey(c => c.Date);
         }
     }
 }

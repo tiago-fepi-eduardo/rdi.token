@@ -11,8 +11,8 @@ using Token.Infra.Data;
 namespace Token.Infra.Data.Migrations
 {
     [DbContext(typeof(TokenContext))]
-    [Migration("20190804034349_TokenDB-V4")]
-    partial class TokenDBV4
+    [Migration("20190806190809_TokenDB-V1")]
+    partial class TokenDBV1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,12 +23,14 @@ namespace Token.Infra.Data.Migrations
 
             modelBuilder.Entity("Token.Domain.Entity.TokenEntity", b =>
                 {
-                    b.Property<DateTime>("Date");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("DateTime");
 
-                    b.Property<int>("CVV");
+                    b.Property<int>("CVV")
+                        .HasColumnType("Int");
 
-                    b.Property<string>("CardNumber")
-                        .IsRequired();
+                    b.Property<long>("CardNumber")
+                        .HasColumnType("BigInt");
 
                     b.HasKey("Date");
 

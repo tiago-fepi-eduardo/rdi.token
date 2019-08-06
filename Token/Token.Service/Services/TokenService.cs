@@ -1,7 +1,10 @@
-﻿using System;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using System;
 using Token.Domain.Entity;
 using Token.Domain.Interfaces;
 using Token.Infra.CrossCutting;
+using Token.Service.Validation;
 
 namespace Token.Service.Services
 {
@@ -31,6 +34,11 @@ namespace Token.Service.Services
         {
             try
             {
+                var result = Validate(obj);
+
+                if (!result.IsValid)
+                    throw new ExecptionHelper.ExceptionService(result.Errors[0].ToString());
+
                 var _obj = obj as TokenEntity;
 
                 string token = _token.Generate(_obj);
@@ -54,6 +62,11 @@ namespace Token.Service.Services
         {
             try
             {
+                var validator = new TokenValidator().ValidateDecode(token, date);
+
+                if (!String.IsNullOrEmpty( validator.ErrorMessage))
+                    throw new ExecptionHelper.ExceptionService(validator.ErrorMessage);
+
                 // Get data from database based on date informed by user.
                 // If it's longer then 15 minutes behind, i will be false.
                 var obj = Get(date);
@@ -91,6 +104,18 @@ namespace Token.Service.Services
             {
                 throw new ExecptionHelper.ExceptionService(ex.Message);
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        protected ValidationResult Validate(T obj)
+        {
+            var validator = new TokenValidator().Validate((TokenEntity)(Object)obj);
+
+            return validator;
         }
     }
 }

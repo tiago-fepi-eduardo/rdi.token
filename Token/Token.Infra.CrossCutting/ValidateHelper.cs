@@ -13,12 +13,12 @@ namespace Token.Infra.CrossCutting
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool ValidateCreditCardNumber(long value)
-        {
-            var pattern = @"^\d{16,}$";
+        //public static bool ValidateCreditCardNumber(long value)
+        //{
+        //    var pattern = @"^\d{16,}$";
 
-            return Regex.Match(value.ToString(), pattern, RegexOptions.IgnoreCase).Success;
-        }
+        //    return Regex.Match(value.ToString(), pattern, RegexOptions.IgnoreCase).Success;
+        //}
 
         // Other examples of classes would be:
         // Format Decimal Currency

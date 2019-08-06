@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "30-Infra", "30-Infra", "{C8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "40-Test", "40-Test", "{2C964F41-EC47-4011-82BB-82DDB9E890CA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Token.Presentation", "Token.Presentation\Token.Presentation.csproj", "{942ABF6D-8BDD-4405-A201-36D73C3DC03B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Token.Api", "Token.Presentation\Token.Api.csproj", "{942ABF6D-8BDD-4405-A201-36D73C3DC03B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B6BC7FA7-99B5-4EE8-A536-1456E44F4842} = {B6BC7FA7-99B5-4EE8-A536-1456E44F4842}
 		{8C640AC2-D143-432D-82E6-BB67A26E9656} = {8C640AC2-D143-432D-82E6-BB67A26E9656}
@@ -50,7 +50,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "41-Integration", "41-Integr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Token.Test.Integration", "Token.Test.Integration\Token.Test.Integration.csproj", "{9BDF5D18-88A2-44BB-862F-D80E1FE54076}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Token.Unit.Test", "XUnitTestProject1\Token.Unit.Test.csproj", "{4F5E5BFB-8143-4ECB-9EC0-0410DC7FBBE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Token.Unit.Test", "XUnitTestProject1\Token.Unit.Test.csproj", "{4F5E5BFB-8143-4ECB-9EC0-0410DC7FBBE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
