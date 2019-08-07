@@ -29,3 +29,17 @@ To use Docker, select:
 The project is set to Windows Docker. To run in Linux:
   1 - Switch your docker desktop
   2 - Go Visual Studio, Select Docker Compose Project, Right click to Properties and write Linux on the field Target OS.
+
+
+Example of JSON Request for POST method:
+
+{
+  "date": "2019-08-07T16:06:55",
+  "cardNumber": 0102030405060708,
+  "cvv": 123
+}
+
+Example of JSON Request for PUT method:
+- Input date: "2019-08-07T16:06:55"
+- Input token: "{token genereted above}" 
+
