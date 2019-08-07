@@ -24,6 +24,7 @@ namespace Token.Presentation.Controllers
         /// </summary>
         /// <param name="token"></param>
         /// <param name="date"></param>
+        // Route not necessary in this case
         // PUT api/token
         [HttpPut]
         public ActionResult Put(string token, DateTime date)

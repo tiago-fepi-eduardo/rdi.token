@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  token.presentation:
-    image: ${DOCKER_REGISTRY}tokenpresentation
+  token.api:
+    image: ${DOCKER_REGISTRY}tokenapi
     build:
       context: .
       dockerfile: Token.Presentation\Dockerfile

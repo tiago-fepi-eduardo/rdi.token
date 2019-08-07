@@ -25,6 +25,7 @@ namespace Token.Presentation.Controllers
         /// </summary>
         /// <param name="token"></param>
         // POST api/token
+        //Route not necessary in this case
         [HttpPost]
         public ActionResult Post([FromBody]TokenModel token)
         {
